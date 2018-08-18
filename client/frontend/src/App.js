@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Navbar } from './common/components';
+import { Switch, Route } from 'react-router-dom';
+import { NavbarContainer, DashboardContainer } from './containers';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <NavbarContainer />
+        <Switch>
+          <Route path="/dashboard" exact render={DashboardContainer} />
+        </Switch>
       </div>
     );
   }

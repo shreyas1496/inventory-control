@@ -1,37 +1,39 @@
 import React from 'react';
-import {
-  Nav, NavItem, NavDropdown, MenuItem, Navbar,
-} from 'react-bootstrap';
+import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import business from '../../../config/business';
 
-const MyNavbar = props => (
+const MyNavbar = props => (props.showNavbar ? (
   <div>
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#home">React-Bootstrap</a>
+          <a href="/dashboard">{props.NavbarBrand}</a>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <NavItem eventKey={1} href="#">
-          Link
+        <NavItem eventKey={1} href="/dashboard">
+            Home
         </NavItem>
-        <NavItem eventKey={2} href="#">
-          Link
+        <NavItem eventKey={2} href="/buy">
+            Buy
         </NavItem>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
-          <MenuItem divider />
-          <MenuItem eventKey={3.4}>Separated link</MenuItem>
-        </NavDropdown>
+        <NavItem eventKey={3} href="/sell">
+            Sell
+        </NavItem>
       </Nav>
     </Navbar>
-    ;
   </div>
-);
+) : (
+  <div />
+));
 
-MyNavbar.propTypes = {};
+MyNavbar.propTypes = {
+  NavbarBrand: PropTypes.string,
+  showNavbar: PropTypes.bool.isRequired,
+};
 
-export default MyNavbar
+MyNavbar.defaultProps = {
+  NavbarBrand: business.NavbarBrand,
+};
+export default MyNavbar;
