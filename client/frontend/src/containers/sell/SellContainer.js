@@ -1,8 +1,14 @@
 import React from 'react';
+import { SellForm } from '../../common/components';
 
 class SellContainer extends React.Component {
   render() {
-    return <div>SellContainer</div>;
+    return (
+      <div>
+        SellContainer
+        <SellForm />
+      </div>
+    );
   }
 }
 

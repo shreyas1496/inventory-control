@@ -13,7 +13,9 @@ const MyNavbar = props => (props.showNavbar ? (
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <Link to="/dashboard">Home</Link>
+        <NavItem>
+          <Link to="/dashboard">Home</Link>
+        </NavItem>
         <NavItem>Buy</NavItem>
         <NavItem>
           <Link to="/sell">Sell</Link>
