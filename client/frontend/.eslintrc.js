@@ -8,6 +8,7 @@ module.exports = {
         "react/prefer-stateless-function": 0,
         "import/prefer-default-export" : 0,
         "react/destructuring-assignment" : 0,
-        "jsx-ally/label-has-associated-control": 0
+        "jsx-ally/label-has-associated-control": 0,
+        "no-console": 0
     }
 };
