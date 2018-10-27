@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  company: MyString
+  description: MyText
+  on_hand: 1
+  max_quantity: 1
+  reorder_level: 1
+  price: 1.5
+  location: MyString
+  usage: MyText
+  expiry: 2018-10-27 09:57:16
+
+two:
+  name: MyString
+  company: MyString
+  description: MyText
+  on_hand: 1
+  max_quantity: 1
+  reorder_level: 1
+  price: 1.5
+  location: MyString
+  usage: MyText
+  expiry: 2018-10-27 09:57:16
