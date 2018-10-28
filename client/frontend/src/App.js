@@ -12,12 +12,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <NavbarContainer showNavbar={this.props.showNavbar} />
-        <Switch>
-          <Route path="/dashboard" exact render={() => <DashboardContainer />} />
-          <Route path="/sell" render={() => <SellContainer />} />
-        </Switch>
+        <div className="App">
+          <Switch>
+            <Route path="/dashboard" exact render={() => <DashboardContainer />} />
+            <Route path="/sell" render={() => <SellContainer />} />
+          </Switch>
+        </div>
       </div>
     );
   }

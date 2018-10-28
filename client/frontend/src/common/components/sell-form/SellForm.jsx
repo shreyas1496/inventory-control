@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './SellForm.css';
 
 const SellForm = (props) => {
-  const { handleSubmit } = props;
+  const { handleSubmit, searchProducts } = props;
   return (
     <Form inline onSubmit={handleSubmit}>
       <FormGroup className="gap">
@@ -71,7 +71,10 @@ const SellForm = (props) => {
           placeholder="Usage"
         />
       </FormGroup>
-      <Button type="submit">Search</Button>
+      <Button onClick={(e) => {
+        e.preventDefault();
+        searchProducts();
+      }} type="submit">Search</Button>
     </Form>
   );
 };
