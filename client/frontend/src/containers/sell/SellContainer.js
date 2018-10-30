@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SellForm, ProductTableWithPagination } from '../../common/components';
+import { SellForm, ProductTableWithPagination, Counter } from '../../common/components';
 import Axios from 'axios';
 
 class SellContainer extends React.Component {

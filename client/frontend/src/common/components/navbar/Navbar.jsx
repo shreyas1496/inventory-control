@@ -13,12 +13,12 @@ const MyNavbar = props => (props.showNavbar ? (
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <NavItem>
-          <Link to="/dashboard">Home</Link>
+        <NavItem componentClass={Link} to="/dashboard" href="/dashbord">
+            Home
         </NavItem>
-        <NavItem>Buy</NavItem>
-        <NavItem>
-          <Link to="/sell">Sell</Link>
+        {/* <NavItem componentClass="div">Buy</NavItem> */}
+        <NavItem componentClass={Link} to="/sell" href="/sell">
+          Sell
         </NavItem>
       </Nav>
     </Navbar>
