@@ -1,11 +1,14 @@
-class TransactionController < ApplicationController
+class TransactionsController < ApplicationController
   def index
   	transactions = Transaction.all
     render json: transactions
   end
 
   def create
-  	transaction = Transaction.create!(params[:transction])
+    p params
+    permited = params[:transaction].permit(:product_id, :price, :quantity, :type)
+    p permited
+  	transaction = Transaction.create!(permited)
   	render json: transaction
   end
 

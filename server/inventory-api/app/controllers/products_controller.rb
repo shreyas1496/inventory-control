@@ -12,6 +12,11 @@ class ProductsController < ApplicationController
     render json: product
   end
 
+  def reorder_items
+    products = Product.where("on_hand <= reorder_level")
+    render json: products
+  end
+
   def update
     @product.update_attributes(params[:product])
     render json: @product
