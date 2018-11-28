@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 import {
   FormControl, FormGroup, ControlLabel, Button, Form,
 } from 'react-bootstrap';
@@ -7,82 +6,59 @@ import PropTypes from 'prop-types';
 import './SellForm.css';
 
 const SellForm = (props) => {
-  const { handleSubmit, searchProducts } = props;
+  const { values, onChange, searchProducts } = props;
   return (
-    <Form inline onSubmit={handleSubmit}>
+    <Form inline>
       <FormGroup className="gap">
         <ControlLabel> Product Name</ControlLabel>
-        <Field
-          component={({ input, type, placeholder }) => (
-            <FormControl
-              type={type}
-              placeholder={placeholder}
-              value={input.value}
-              onChange={input.onChange}
-            />
-          )}
-          name="name"
-          placeholder="Product Name"
+        <FormControl
+          placeholder="Name"
+          value={values.name}
+          onChange={e => onChange('name', e.target.value)}
         />
       </FormGroup>
 
       <FormGroup className="gap">
         <ControlLabel>Company</ControlLabel>
-        <Field
-          component={({ input, type, placeholder }) => (
-            <FormControl
-              type={type}
-              placeholder={placeholder}
-              value={input.value}
-              onChange={input.onChange}
-            />
-          )}
-          name="company"
+        <FormControl
           placeholder="Company"
+          value={values.company}
+          onChange={e => onChange('company', e.target.value)}
         />
       </FormGroup>
       <FormGroup className="gap">
         <ControlLabel> Description</ControlLabel>
-        <Field
-          component={({ input, type, placeholder }) => (
-            <FormControl
-              type={type}
-              placeholder={placeholder}
-              value={input.value}
-              onChange={input.onChange}
-            />
-          )}
-          name="description"
+        <FormControl
           placeholder="Description"
+          value={values.desciption}
+          onChange={e => onChange('description', e.target.value)}
         />
       </FormGroup>
       <FormGroup className="gap">
         <ControlLabel> Usage</ControlLabel>
-        <Field
-          component={({ input, type, placeholder }) => (
-            <FormControl
-              type={type}
-              placeholder={placeholder}
-              value={input.value}
-              onChange={input.onChange}
-            />
-          )}
-          name="usage"
+        <FormControl
           placeholder="Usage"
+          value={values.usage}
+          onChange={e => onChange('usage', e.target.value)}
         />
       </FormGroup>
-      <Button onClick={(e) => {
-        e.preventDefault();
-        searchProducts();
-      }} type="submit">Search</Button>
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          searchProducts();
+        }}
+        type="submit"
+      >
+        Search
+      </Button>
     </Form>
   );
 };
 
 SellForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  searchProducts: PropTypes.func.isRequired,
 };
 
-export default reduxForm({
-  form: 'sell',
-})(SellForm);
+export default SellForm;

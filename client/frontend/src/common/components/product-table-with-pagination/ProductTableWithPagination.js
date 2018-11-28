@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import Counter from '../Counter';
 
 const ProductTableWithPagination = ({ products, showModal }) => (
   <div>
@@ -39,6 +38,7 @@ const ProductTableWithPagination = ({ products, showModal }) => (
 
 ProductTableWithPagination.propTypes = {
   products: PropTypes.array.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 export default ProductTableWithPagination;

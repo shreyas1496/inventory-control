@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Modal, FormControl, ControlLabel, FormGroup } from 'react-bootstrap';
-import { SellForm, ProductTableWithPagination, Counter } from '../../common/components';
+import SellModal from './SellModal';
+import { SellForm, ProductTableWithPagination } from '../../common/components';
 import { getProducts } from '../../actions/ProductActions'; //named exports
 import { postTransaction } from '../../actions/TransactionActions';
 
@@ -10,21 +9,25 @@ class SellContainer extends React.Component {
     products: [],
     showSellModal: false,
     product: {},
+    searchValues: {
+      name: '',
+      company: '',
+    },
   };
 
   componentDidMount() {
     this._searchProducts();
   }
 
-  quantityRef = React.createRef()
-  priceRef = React.createRef()
+  quantityRef = React.createRef();
+  priceRef = React.createRef();
   _searchProducts = () => {
-    getProducts()
+    getProducts(this.state.searchValues)
       .then(res => {
         if (res.status === 200) {
           this.setState({ products: res.data });
         } else {
-          throw 'unexpected exception';
+          throw { message: 'unexpected exception' };
         }
       })
       .catch(err => {
@@ -36,56 +39,41 @@ class SellContainer extends React.Component {
   showModal = product => this.setState({ showSellModal: true, product });
   hideModal = () => this.setState({ showSellModal: false });
   sellProduct = (quantity, price) => {
-    console.log(quantity,price);
+    console.log(quantity, price);
     const { product } = this.state;
     postTransaction({
       product_id: product.id,
       quantity: quantity,
       price: price || product.price,
       transaction_type: 'sell',
-    });
+    })
+      .then(this.hideModal)
+      .then(this._searchProducts);
+  };
+
+  _onSearchValueChange = (field, value) => {
+    const { searchValues } = this.state;
+    searchValues[field] = value;
+    this.setState({ searchValues });
   };
   render() {
-    const { showSellModal, product } = this.state;
+    const { showSellModal, product, searchValues } = this.state;
     return (
       <div>
         SellContainer
-        <Modal show={showSellModal} onHide={this.hideModal}>
-          <Modal.Header>Sell</Modal.Header>
-          <form>
-            <Modal.Body>
-              <FormGroup>
-                <ControlLabel>Name</ControlLabel>
-                <FormControl
-                  type="text"
-                  disabled="true"
-                  value={product.name}
-                />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Price</ControlLabel>
-                <input
-                  type="number"
-                  defaultValue={product.price}
-                  ref={this.priceRef}
-                />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Quantity</ControlLabel>
-                <input
-                  type="number"
-                  defaultValue={product.on_hand}
-                  ref={this.quantityRef}
-                  max={product.on_hand}
-                />
-              </FormGroup>
-            </Modal.Body>
-            <Modal.Footer>
-              <button onClick={() => this.sellProduct(this.quantityRef.current.value, this.priceRef.current.value)}>Sell</button>
-            </Modal.Footer>
-          </form>
-        </Modal>
-        <SellForm searchProducts={this._searchProducts} />
+        <SellModal
+          showSellModal={showSellModal}
+          product={product}
+          priceRef={this.priceRef}
+          quantityRef={this.quantityRef}
+          sellProduct={this.sellProduct}
+          hideModal={this.hideModal}
+        />
+        <SellForm
+          values={searchValues}
+          onChange={this._onSearchValueChange}
+          searchProducts={this._searchProducts}
+        />
         <ProductTableWithPagination products={this.state.products} showModal={this.showModal} />
       </div>
     );

@@ -8,9 +8,9 @@ export const addProduct = product => axios({
   data: product,
 });
 
-export const getProducts = () => axios({
+export const getProducts = (filters = {}) => axios({
   ...apiDefaultConfig,
-  url: '/products',
+  url: `/products?name=${filters.name || ''}&company=${filters.company || ''}&description=${filters.description || ''}&uasge=${filters.usage || ''}`,
   method: 'get',
 });
 

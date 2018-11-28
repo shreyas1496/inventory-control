@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :get_product, only: [:update, :delete, :show]
 
   def index
-    products = Product.all
+    products = Product.where("name like ? or company like ? or description like ? or usage like ?", "%#{params[:name]}%", "%#{params[:company]}%", "%#{params[:description]}%", "%#{params[:usage]}%")
     render json: products
   end
 
