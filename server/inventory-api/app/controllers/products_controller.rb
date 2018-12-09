@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     render json: products
   end
 
+  def get_reorder_level_products
+    products = Product.where("on_hand < reorder_level")
+    render json: products
+  end
+
   def create
     # { product: { name: '' }}
     product = Product.create!(params[:product])

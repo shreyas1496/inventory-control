@@ -5,11 +5,13 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    p params
+    begin
     permited = params[:transaction].permit(:product_id, :price, :quantity, :type)
-    p permited
-  	transaction = Transaction.create!(permited)
-  	render json: transaction
+    transaction = Transaction.create!(permited)
+    render json: transaction
+    rescue => e
+      render json: {error: e}, status: 422
+    end
   end
 
   def show
