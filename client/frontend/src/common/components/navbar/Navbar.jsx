@@ -2,6 +2,7 @@ import React from 'react';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Highlight from '../Highlight';
 import business from '../../../config/business';
 
 const MyNavbar = props => (props.showNavbar ? (
@@ -16,9 +17,19 @@ const MyNavbar = props => (props.showNavbar ? (
         <NavItem componentClass={Link} to="/dashboard" href="/dashbord">
             Home
         </NavItem>
-        {/* <NavItem componentClass="div">Buy</NavItem> */}
         <NavItem componentClass={Link} to="/sell" href="/sell">
-          Sell
+            Sell
+        </NavItem>
+        <NavItem componentClass={Link} to="/cart" href="/cart">
+          <Highlight
+            WrappedComponent={(
+              <div>
+                  Cart
+                {` ${props.cartItems}`}
+              </div>
+)}
+            updater={props.cartItems}
+          />
         </NavItem>
       </Nav>
     </Navbar>
@@ -30,6 +41,7 @@ const MyNavbar = props => (props.showNavbar ? (
 MyNavbar.propTypes = {
   NavbarBrand: PropTypes.string,
   showNavbar: PropTypes.bool.isRequired,
+  cartItems: PropTypes.number.isRequired,
 };
 
 MyNavbar.defaultProps = {

@@ -4,6 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavbarContainer, DashboardContainer, SellContainer } from './containers';
+import Cart from './common/components/cart/Cart';
 
 class App extends Component {
   componentDidUpdate() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Switch>
             <Route path="/dashboard" exact render={() => <DashboardContainer />} />
             <Route path="/sell" render={() => <SellContainer />} />
+            <Route path="/cart" render={() => <Cart />} />
           </Switch>
         </div>
       </div>

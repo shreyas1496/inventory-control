@@ -3,6 +3,8 @@ import SellModal from './SellModal';
 import { SellForm, ProductTableWithPagination } from '../../common/components';
 import { getProducts } from '../../actions/ProductActions'; //named exports
 import { postTransaction } from '../../actions/TransactionActions';
+import { connect } from 'react-redux';
+import { addProductToCart } from '../../actions/AppStateActions';
 
 class SellContainer extends React.Component {
   state = {
@@ -74,10 +76,17 @@ class SellContainer extends React.Component {
           onChange={this._onSearchValueChange}
           searchProducts={this._searchProducts}
         />
-        <ProductTableWithPagination products={this.state.products} showModal={this.showModal} />
+        <ProductTableWithPagination products={this.state.products} showModal={this.showModal} addToCart={this.props.addProductToCart} />
       </div>
     );
   }
 }
 
-export default SellContainer;
+const mapDispatchToProps = dispatch => ({
+  addProductToCart: product => dispatch(addProductToCart(product)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SellContainer);

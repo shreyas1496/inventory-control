@@ -10,7 +10,7 @@ export const addProductToCart = product => ({
   payload: product,
 });
 
-export const removeProductToCart = id => ({
+export const removeProductFromCart = id => ({
   type: ACTION_TYPES.REMOVE_PRODUCT_FROM_CART,
   payload: id,
 });

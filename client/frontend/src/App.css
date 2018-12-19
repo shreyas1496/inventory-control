@@ -8,3 +8,8 @@
   display: inline-block;
   line-height: 20px;
 }
+
+.emphasize {
+  font-size: 120%;
+  font-weight: 800;
+}

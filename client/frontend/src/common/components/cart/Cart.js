@@ -1,16 +1,17 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { removeProductFromCart } from '../../../actions/AppStateActions';
 
-const ProductTableWithPagination = ({ products, showModal, addToCart }) => (
+const Cart = ({ products, removeProduct }) => (
   <div>
     <Table stripped="true" bordered condensed hover>
       <thead>
         <tr>
           <th>Name</th>
           <th>Company</th>
-          <th>Description</th>
-          <th>Location</th>
+          <th>Description</th>  
           <th>On hand</th>
           <th>Price</th>
           <th>Actions</th>
@@ -22,13 +23,10 @@ const ProductTableWithPagination = ({ products, showModal, addToCart }) => (
             <td>{product.name}</td>
             <td>{product.company}</td>
             <td>{product.description}</td>
-            <td>{product.location}</td>
             <td>{product.on_hand}</td>
             <td>{product.price}</td>
             <td>
-              <button>Edit</button>
-              <button onClick={() => showModal(product)}>Sell</button>
-              <button onClick={() => addToCart(product)}>Add to cart</button>
+              <button onClick={() => removeProduct(product.id)}>Remove Product</button>
             </td>
           </tr>
         ))}
@@ -37,9 +35,20 @@ const ProductTableWithPagination = ({ products, showModal, addToCart }) => (
   </div>
 );
 
-ProductTableWithPagination.propTypes = {
+Cart.propTypes = {
   products: PropTypes.array.isRequired,
-  showModal: PropTypes.func.isRequired,
+  removeProduct: PropTypes.func.isRequired,
 };
 
-export default ProductTableWithPagination;
+const mapStateToProps = state => ({
+  products: state.appState.cart,
+});
+
+const mapDispatchToProps = dispatch => ({
+  removeProduct: id => dispatch(removeProductFromCart(id)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Cart);
