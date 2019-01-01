@@ -7,7 +7,10 @@ export const startLoading = requestName => ({
 
 export const addProductToCart = product => ({
   type: ACTION_TYPES.ADD_PRODUCT_TO_CART,
-  payload: product,
+  payload: {
+    ...product,
+    quantity: product.on_hand,
+  },
 });
 
 export const removeProductFromCart = id => ({
@@ -18,3 +21,7 @@ export const removeProductFromCart = id => ({
 export const clearCart = () => ({
   type: ACTION_TYPES.CLEAR_CART,
 });
+
+export const updateProduct = (product) =>({
+  
+})

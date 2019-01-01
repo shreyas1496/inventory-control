@@ -2,23 +2,7 @@ import Actions from '../constants/actions';
 
 const initialState = {
   showNavbar: true,
-  cart: [
-    {
-      id: 3,
-      name: 'ssss',
-      company: null,
-      description: null,
-      on_hand: null,
-      max_quantity: null,
-      reorder_level: null,
-      price: null,
-      location: null,
-      usage: null,
-      expiry: null,
-      created_at: '2018-12-08T08:48:20.791Z',
-      updated_at: '2018-12-08T08:48:20.791Z',
-    },
-  ],
+  cart: [],
 };
 
 const appStateReducer = (store = { ...initialState }, action) => {

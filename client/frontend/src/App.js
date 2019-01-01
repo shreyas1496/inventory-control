@@ -4,7 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavbarContainer, DashboardContainer, SellContainer } from './containers';
-import Cart from './common/components/cart/Cart';
+import Cart from './containers/cart/Cart';
 
 class App extends Component {
   componentDidUpdate() {
