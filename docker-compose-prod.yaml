@@ -1,0 +1,8 @@
+version: '3'
+services:
+    frontend_prod:
+        build:
+            context: ./client/react
+            dockerfile: Dockerfile-prod
+        ports:
+            - '4001:80'
