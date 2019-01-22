@@ -2,7 +2,24 @@ import Actions from '../constants/actions';
 
 const initialState = {
   showNavbar: true,
-  cart: [],
+  cart: [
+    {
+      id: 5,
+      name: 'display',
+      company: 'hcl',
+      description: 'flexible',
+      on_hand: 10,
+      max_quantity: 400,
+      reorder_level: 20,
+      price: 200,
+      location: 'abc123',
+      usage: null,
+      expiry: null,
+      created_at: '2018-12-15T11:56:34.554Z',
+      updated_at: '2018-12-18T15:32:34.178Z',
+      quantity: 10,
+    },
+  ],
 };
 
 const appStateReducer = (store = { ...initialState }, action) => {
@@ -28,7 +45,14 @@ const appStateReducer = (store = { ...initialState }, action) => {
 
     case Actions.CLEAR_CART: {
       const cart = [];
-      return { ...store, cart };
+      return { ...store, cart, bill: 0 };
+    }
+
+    case Actions.UPDATE_PRODUCT: {
+      const { cart } = store;
+      const foundIndex = cart.findIndex(product => product.id === action.payload.id);
+      cart[foundIndex] = action.payload;
+      return { ...store, cart: [...cart] };
     }
 
     default:

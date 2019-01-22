@@ -22,6 +22,7 @@ export const clearCart = () => ({
   type: ACTION_TYPES.CLEAR_CART,
 });
 
-export const updateProduct = (product) =>({
-  
-})
+export const updateProduct = product => ({
+  type: ACTION_TYPES.UPDATE_PRODUCT,
+  payload: product,
+});
