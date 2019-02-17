@@ -7,9 +7,11 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :on_hand
       t.integer :max_quantity
       t.integer :reorder_level
-      t.float :price
+      t.float :buy_price
+      t.float :sell_price
       t.string :location
       t.text :usage
+      t.string :gst
       t.datetime :expiry
 
       t.timestamps

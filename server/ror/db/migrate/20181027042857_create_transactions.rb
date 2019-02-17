@@ -5,6 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.integer :quantity
       t.float :price
       t.integer :type
+      t.string :order
 
       t.timestamps
     end

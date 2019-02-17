@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(version: 2018_11_04_055846) do
     t.integer "on_hand"
     t.integer "max_quantity"
     t.integer "reorder_level"
-    t.float "price"
+    t.float "buy_price"
+    t.float "sell_price"
     t.string "location"
     t.text "usage"
+    t.string "gst"
     t.datetime "expiry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_11_04_055846) do
     t.integer "quantity"
     t.float "price"
     t.integer "transaction_type"
+    t.string "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_transactions_on_product_id"
