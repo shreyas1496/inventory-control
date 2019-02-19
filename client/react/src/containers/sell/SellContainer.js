@@ -76,6 +76,7 @@ class SellContainer extends React.Component {
           onChange={this._onSearchValueChange}
           searchProducts={this._searchProducts}
         />
+        <button data-toggle="modal" data-target="#productaddform">Add Product</button>
         <ProductTableWithPagination products={this.state.products} showModal={this.showModal} addToCart={this.props.addProductToCart} />
       </div>
     );
