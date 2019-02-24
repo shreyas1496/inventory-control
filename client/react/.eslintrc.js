@@ -1,5 +1,8 @@
 module.exports = {
-    "extends": "airbnb",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+      ],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 6,
@@ -21,6 +24,7 @@ module.exports = {
         "react/forbid-prop-types": 0,
         "no-param-reassign":0,
         "jsx-ally/label-has-associated-control": 0,
-        "no-console": 0
+        "no-console": 0,
+        "no-shaddow": 0
     }
 };
